@@ -116,11 +116,12 @@
           // User signed in
           console.log('User signed in:', userCredential.user)
           alert('User signed in:', userCredential.user)
+          loginForm.reset()
           // Redirect or do something else upon successful login
         } catch (error) {
           // Handle errors
           console.error('Login error:', error.message)
-          alert('Login error:', error.message)
+          alert('Username or password is incorrect')
           // Display error message to user
         }
       })
