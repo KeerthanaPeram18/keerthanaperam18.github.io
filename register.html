@@ -1,0 +1,235 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js"></script>
+    <img class="bg-img" src="assets/bgimage.jpg" alt="My Logo" />
+    <div class="login-container">
+      <form class="login-form" id="signup-form">
+        <div class="signin-options">
+          <div class="signin">
+            <a
+              class="login-header"
+              style="color: white; font-family: Arial, Helvetica, sans-serif"
+              href="index.html"
+            >
+              SignIn
+            </a>
+          </div>
+          <div class="signup">
+            <a
+              class="login-header"
+              style="color: white; font-family: Arial, Helvetica, sans-serif"
+              href="register.html"
+            >
+              SignUp
+            </a>
+          </div>
+        </div>
+        <div class="page-values">
+          <div>
+            <input
+              type="text"
+              name="username"
+              placeholder="First & Last name"
+            />
+          </div>
+          <div>
+            <input type="email" name="email" placeholder="Email Address" />
+          </div>
+          <div>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+            />
+          </div>
+          <div><button type="submit">Register</button></div>
+          <div class="new-user">
+            <p>Already Registered?</p>
+            <a href="#" id="signin-link" style="color: red; margin-left: 5px"
+              >Sign In</a
+            >
+          </div>
+        </div>
+      </form>
+    </div>
+    <script type="module">
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js'
+      import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js'
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+      } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js'
+
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: 'AIzaSyAVcrgeVXlgcvnFR_eKsuvENktSLX-JYYY',
+        authDomain: 'fir-auth-7f4f7.firebaseapp.com',
+        databaseURL: 'https://fir-auth-7f4f7-default-rtdb.firebaseio.com',
+        projectId: 'fir-auth-7f4f7',
+        storageBucket: 'fir-auth-7f4f7.appspot.com',
+        messagingSenderId: '503471300444',
+        appId: '1:503471300444:web:71c1fc8a9acffda7106b99',
+        measurementId: 'G-3WW5DHNXSY',
+      }
+
+      const app = initializeApp(firebaseConfig)
+      const analytics = getAnalytics(app)
+
+      const signupForm = document.getElementById('signup-form')
+      const signupBtn = document.getElementById('signup-btn')
+
+      signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault()
+        const email = signupForm.email.value
+        const password = signupForm.password.value
+
+        try {
+          const userCredential = await createUserWithEmailAndPassword(
+            getAuth(),
+            email,
+            password
+          )
+          // User signed up
+          console.log('User signed up:', userCredential.user)
+          // Redirect or do something else upon successful registration
+        } catch (error) {
+          // Handle errors
+          console.error('Registration error:', error.message)
+          // Display error message to user
+        }
+      })
+    </script>
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <img class="bg-img" src="assets/bgimage.jpg" alt="My Logo" />
+    <div class="login-container">
+      <form class="login-form" id="signup-form">
+        <div class="signin-options">
+          <div class="signin">
+            <a class="login-header" href="index.html">SignIn</a>
+          </div>
+          <div class="signup">
+            <a class="login-header" href="register.html">SignUp</a>
+          </div>
+        </div>
+        <div class="page-values">
+          <div>
+            <input
+              type="text"
+              name="username"
+              placeholder="First & Last name"
+            />
+          </div>
+          <div>
+            <input type="email" name="email" placeholder="Email Address" />
+          </div>
+          <div>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+            />
+          </div>
+          <div><button type="submit">Register</button></div>
+          <div class="new-user">
+            <p>Already Registered?</p>
+            <a
+              href="index.html"
+              id="signin-link"
+              style="color: red; margin-left: 5px"
+              >Sign In</a
+            >
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Include Firebase SDK using script tags -->
+
+    <script type="module">
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js'
+
+      // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+      import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js'
+
+      // Add Firebase products that you want to use
+      import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js'
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+      } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js'
+
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: 'AIzaSyAVcrgeVXlgcvnFR_eKsuvENktSLX-JYYY',
+        authDomain: 'fir-auth-7f4f7.firebaseapp.com',
+        databaseURL: 'https://fir-auth-7f4f7-default-rtdb.firebaseio.com',
+        projectId: 'fir-auth-7f4f7',
+        storageBucket: 'fir-auth-7f4f7.appspot.com',
+        messagingSenderId: '503471300444',
+        appId: '1:503471300444:web:71c1fc8a9acffda7106b99',
+        measurementId: 'G-3WW5DHNXSY',
+      }
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig)
+      const auth = getAuth(app)
+
+      // Sign up form
+      const signupForm = document.getElementById('signup-form')
+      signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault()
+
+        // Get user inputs
+        const email = signupForm.email.value
+        const password = signupForm.password.value
+
+        try {
+          // Create user with email and password
+          const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+          )
+          console.log('User registered:', userCredential.user)
+          alert('User registered successfully!')
+          signupForm.reset()
+          // Redirect or show success message
+        } catch (error) {
+          console.error('Registration error:', error.message)
+          // Display error message to user
+        }
+      })
+    </script>
+  </body>
+</html>

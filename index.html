@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <!-- Include Firebase scripts using script tags -->
+  </head>
+  <body>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js"></script>
+    <img class="bg-img" src="assets/bgimage.jpg" alt="My Logo" />
+    <div class="login-container">
+      <form class="login-form" id="login-form">
+        <div class="signin-options">
+          <div class="signin">
+            <a
+              class="login-header"
+              style="color: white; font-family: Arial, Helvetica, sans-serif"
+              href="index.html"
+            >
+              SignIn
+            </a>
+          </div>
+          <div class="signup">
+            <a
+              class="login-header"
+              style="color: white; font-family: Arial, Helvetica, sans-serif"
+              href="register.html"
+            >
+              SignUp
+            </a>
+          </div>
+        </div>
+        <div class="page-values">
+          <div>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Email Address"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+            />
+          </div>
+          <div><button type="submit">Login</button></div>
+          <div class="new-user">
+            <p>Not a Registered User?</p>
+            <a
+              href="register.html"
+              id="signup-link"
+              style="color: red; margin-left: 5px"
+              >Register</a
+            >
+          </div>
+        </div>
+      </form>
+    </div>
+    <script type="module">
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js'
+      import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js'
+      import {
+        getAuth,
+        signInWithEmailAndPassword,
+      } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js'
+
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: 'AIzaSyAVcrgeVXlgcvnFR_eKsuvENktSLX-JYYY',
+        authDomain: 'fir-auth-7f4f7.firebaseapp.com',
+        databaseURL: 'https://fir-auth-7f4f7-default-rtdb.firebaseio.com',
+        projectId: 'fir-auth-7f4f7',
+        storageBucket: 'fir-auth-7f4f7.appspot.com',
+        messagingSenderId: '503471300444',
+        appId: '1:503471300444:web:71c1fc8a9acffda7106b99',
+        measurementId: 'G-3WW5DHNXSY',
+      }
+
+      const app = initializeApp(firebaseConfig)
+      const analytics = getAnalytics(app)
+
+      const loginForm = document.getElementById('login-form')
+      const loginBtn = document.getElementById('login-btn')
+
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault()
+        const email = loginForm.username.value
+        const password = loginForm.password.value
+
+        try {
+          const userCredential = await signInWithEmailAndPassword(
+            getAuth(),
+            email,
+            password
+          )
+          // User signed in
+          console.log('User signed in:', userCredential.user)
+          alert('User signed in:', userCredential.user)
+          // Redirect or do something else upon successful login
+        } catch (error) {
+          // Handle errors
+          console.error('Login error:', error.message)
+          alert('Login error:', error.message)
+          // Display error message to user
+        }
+      })
+    </script>
+  </body>
+</html>
